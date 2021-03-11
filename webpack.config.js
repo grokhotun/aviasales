@@ -142,6 +142,10 @@ module.exports = {
             options: getBabelOptions(['@babel/preset-typescript'])
           }
         ]
+      },
+      {
+        test: /\.(png|jpg|svg|jpeg|gif)$/,
+        use: ['file-loader']
       }
     ]
   }
