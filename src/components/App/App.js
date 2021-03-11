@@ -2,15 +2,19 @@ import React from 'react'
 
 import Header from '@/components/Header/Header'
 import Footer from '@/components/Footer/Footer'
-import Main from '@/components/Main/Main'
+import Content from '@/components/Content/Content'
 
 const App = () => {
   return (
-    <React.Fragment>
-      <Header/>
-      <Main/>
-      <Footer/>
-    </React.Fragment>
+    <div className="wrapper">
+      <div className="container">
+        <div className="aviasales">
+          <Header />
+          <Content />
+          <Footer />
+        </div>
+      </div>
+    </div>
   )
 }
 

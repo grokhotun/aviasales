@@ -6,14 +6,27 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 #root {
   width: 100vw;
   min-height: 100vh;
   min-width: 320px;
+  background-color: #f3f7fa;
 }
-
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: 12px;
+  font-size: 14px;
+}
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+.container {
+  margin: 0 auto;
+  max-width: 900px;
+  width: 100%;
+  padding: 0 10px;
+}
+.aviasales {
+  padding: 100px 0;
 }
