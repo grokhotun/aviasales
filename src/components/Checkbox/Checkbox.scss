@@ -1,0 +1,30 @@
+.checkbox {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: 0.3s ease;
+  &:hover {
+    background: #f1fcff;
+  }
+  &__input {
+    display: none;
+    &:checked ~ .checkbox__custom {
+      background: url('@/assets/images/check.svg');
+      background-color: #fff;
+      background-repeat: no-repeat;
+      background-position: center;
+      border: 1px solid #2196f3;
+    }
+  }
+  &__custom {
+    background-color: #fff;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #9abbce;
+    border-radius: 2px;
+    margin: 0px 10px 0px 0px;
+  }
+  &__text {
+  }
+}
