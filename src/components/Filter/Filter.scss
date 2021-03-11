@@ -3,6 +3,9 @@
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   padding: 25px;
+  @media (max-width: 768px){
+    padding: 20px;
+  }
   &__header {
     font-weight: bold;
     font-size: 12px;
@@ -16,6 +19,9 @@
     & > * {
       &:not(:last-child) {
         margin-bottom: 30px;
+        @media (max-width: 768px){
+          margin-bottom: 15px;
+        }
       }
     }
   }
