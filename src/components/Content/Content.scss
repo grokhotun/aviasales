@@ -1,0 +1,20 @@
+.content {
+  display: flex;
+  justify-content: center;
+  margin: 0px -10px;
+  @media (max-width: 768px){
+    flex-direction: column;
+  }
+  &__col {
+    padding: 0px 10px;
+    &--filter {
+      flex: 0 0 250px;
+      @media (max-width: 768px){
+        margin-bottom: 15px;
+      }
+    }
+    &--tickets {
+      flex: 1 1 auto;
+    }
+  }
+}
