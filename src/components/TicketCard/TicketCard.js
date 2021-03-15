@@ -1,57 +1,81 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import './TicketCard.scss'
 
-const TicketCard = () => {
+const TicketCard = ({ticket}) => {
+  const {carrier, price, to, from} = ticket
   return (
     <div className="ticket-card">
       <div className="ticket-card__header">
         <div className="ticket-card__price">
-          15500р.
+          {`${price} р.`}
         </div>
         <div className="ticket-card__logo">
-          <img src={`http://pics.avs.io/99/36/S7.png`} alt="Лого авиакомпании" />
+          <img src={`http://pics.avs.io/99/36/${carrier}.png`} alt={carrier} />
         </div>
       </div>
       <div className="ticket-card__body">
         <div className="ticket-card__row row-ticket-card">
           <div className="row-ticket-card__col">
-            <div className="row-ticket-card__name">MOW - HKT</div>
-            <div className="row-ticket-card__value">04:46 - 19:31</div>
+            <div className="row-ticket-card__name">{to.direction}</div>
+            <div className="row-ticket-card__value">{to.timeInterval}</div>
           </div>
           <div className="row-ticket-card__col">
             <div className="row-ticket-card__name">В ПУТИ</div>
-            <div className="row-ticket-card__value">14 ч. 45 м.</div>
+            <div className="row-ticket-card__value">{to.duration}</div>
           </div>
           <div className="row-ticket-card__col">
             <div className="row-ticket-card__name">
-              1 пересадка
+              {
+                to.stops.length === 0
+                ? 'прямой'
+                : to.stops.length > 1
+                ? `${to.stops.length} пересадки`
+                : `${to.stops.length} пересадка`
+              }
             </div>
             <div className="row-ticket-card__value">
-              SVO, VKO
+              {
+                to.stops.length === 0 ? ' '
+                : to.stops.map((e, index) => index >= 1 ? `, ${e}` : e)
+              }
             </div>
           </div>
         </div>
         <div className="ticket-card__row row-ticket-card">
           <div className="row-ticket-card__col">
-            <div className="row-ticket-card__name">MOW - HKT</div>
-            <div className="row-ticket-card__value">04:46 - 19:31</div>
+            <div className="row-ticket-card__name">{from.direction}</div>
+            <div className="row-ticket-card__value">{from.timeInterval}</div>
           </div>
           <div className="row-ticket-card__col">
             <div className="row-ticket-card__name">В ПУТИ</div>
-            <div className="row-ticket-card__value">14 ч. 45 м.</div>
+            <div className="row-ticket-card__value">{from.duration}</div>
           </div>
           <div className="row-ticket-card__col">
             <div className="row-ticket-card__name">
-              1 пересадка
+              {
+                from.stops.length === 0
+                ? 'прямой'
+                : from.stops.length > 1
+                ? `${from.stops.length} пересадки`
+                : `${from.stops.length} пересадка`
+              }
             </div>
             <div className="row-ticket-card__value">
-              SVO, VKO
+              {
+                from.stops.length === 0 ? ' '
+                : from.stops.map((e, index) => index >= 1 ? ', ' + e : e)
+              }
             </div>
           </div>
         </div>
       </div>
     </div>
   )
+}
+
+TicketCard.propTypes = {
+  ticket: PropTypes.object
 }
 
 export default TicketCard
