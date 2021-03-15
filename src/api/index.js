@@ -16,9 +16,7 @@ class AviasalesAPI {
         ...data
       }
     } catch (error) {
-      return {
-        ...error
-      }
+      return error
     }
   }
 
@@ -41,34 +39,45 @@ class AviasalesAPI {
    * @return {object}  Возвращает массив билетов
    */
   async getData() {
-    if (!this.searchId) {
-      await this.getSearchId()
-    }
-    const {tickets, stop} = await this.fetch(`/tickets?searchId=${this.searchId}`)
-    if (stop) {
-      this.searchId = null
-    }
-    return tickets.map(ticket => ({
-      carrier: ticket.carrier,
-      price: ticket.price,
-      totalDuration: ticket.segments[0].duration + ticket.segments[1].duration,
-      totalTransitions: ticket.segments[0].stops.length + ticket.segments[1].stops.length,
-      to: {
-        timeInterval: calcTime(ticket.segments[0].date, ticket.segments[0].duration),
-        duration: calcDuration(ticket.segments[0].duration),
-        stops: ticket.segments[0].stops,
-        direction: `${ticket.segments[0].origin} - ${ticket.segments[0].destination}`
-      },
-      from: {
-        timeInterval: calcTime(ticket.segments[1].date, ticket.segments[1].duration),
-        duration: calcDuration(ticket.segments[1].duration),
-        stops: ticket.segments[1].stops,
-        direction: `${ticket.segments[1].destination} - ${ticket.segments[1].origin}`
+    try {
+      if (!this.searchId) {
+        await this.getSearchId()
       }
-    }))
+      const {tickets, stop} = await this.fetch(`/tickets?searchId=${this.searchId}`)
+      if (stop) {
+        this.searchId = null
+      }
+      return {
+        end: stop,
+        tickets: tickets.map(ticket => ({
+          carrier: ticket.carrier,
+          price: ticket.price,
+          totalDuration: ticket.segments[0].duration + ticket.segments[1].duration,
+          totalTransitions: ticket.segments[0].stops.length + ticket.segments[1].stops.length,
+          to: {
+            timeInterval: calcTime(ticket.segments[0].date, ticket.segments[0].duration),
+            duration: calcDuration(ticket.segments[0].duration),
+            stops: ticket.segments[0].stops,
+            direction: `${ticket.segments[0].origin} - ${ticket.segments[0].destination}`
+          },
+          from: {
+            timeInterval: calcTime(ticket.segments[1].date, ticket.segments[1].duration),
+            duration: calcDuration(ticket.segments[1].duration),
+            stops: ticket.segments[1].stops,
+            direction: `${ticket.segments[1].destination} - ${ticket.segments[1].origin}`
+          }
+        }))
+      }
+    } catch (error) {
+      return error
+    }
   }
 }
-
+/**
+ * Метод форматирует время в timesstamp секундах в формат часы/минуты
+ * @param {number} time Время в формате UNIX timestamp
+ * @return {string} Возвращает строку
+ */
 const calcDuration = time => {
   const timestamp = time * 60
   const hours = Math.floor(timestamp / 60 / 60)
@@ -76,6 +85,12 @@ const calcDuration = time => {
   return `${hours} ч. ${minutes} м.`
 }
 
+/**
+ * Метод высчитывает интервал полета на основании времени вылета и длительности
+ * @param {number} departureTime Время вылета в формате UNIX timestamp
+ * @param {*} duration Длительность полета в формате UNIX timestamp
+ * @return {string} Возвращает строку
+ */
 const calcTime = (departureTime, duration) => {
   const originTime = new Date(departureTime)
   const destinationTime = new Date()
