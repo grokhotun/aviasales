@@ -1,6 +1,7 @@
 const initialState = {
   tickets: [],
   isFetching: true,
+  isError: false,
   sortBy: 'fast',
   transitions: {
     all: true,
@@ -13,19 +14,22 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_IS_FETHCING':
+    case 'SET_IS_FETCHING':
       return {
         ...state,
-        isFetching: true
+        isFetching: action.payload
+      }
+
+    case 'SET_IS_ERROR':
+      return {
+        ...state,
+        isError: action.payload
       }
 
     case 'SET_TICKETS':
       return {
         ...state,
-        tickets: [
-          ...state.tickets,
-          action.payload
-        ],
+        tickets: [...state.tickets, ...action.payload],
         isFetching: false
       }
 

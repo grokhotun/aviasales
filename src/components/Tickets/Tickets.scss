@@ -1,7 +1,25 @@
 .tickets {
-  & > * {
-    &:not(:last-child) {
-      margin-bottom: 15px;
+  &__body{
+    & > * {
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+    }
+  }
+  &__btn {
+    margin-top: 30px;
+    button {
+      border: none;
+      width: 100%;
+      padding: 20px;
+      background-color: #2196F3;
+      border-radius: 10px;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
   }
 }
