@@ -1,15 +1,14 @@
 import React from 'react'
-import Filter from '@/components/Filter/Filter'
-// import Tickets from '@/components/Tickets/Tickets'
-import Tabs from '@/components/Tabs/Tabs'
-import './Content.scss'
+import FilterContainer from '@containers/FilterContainer'
 import TicketsContainer from '@containers/TicketsContainer'
+import Tabs from '@components/Tabs/Tabs'
+import './Content.scss'
 
 const Content = () => {
   return (
     <main className="content">
       <div className="content__col content__col--filter">
-        <Filter/>
+        <FilterContainer/>
       </div>
       <div className="content__col content__col--tickets">
         <Tabs/>

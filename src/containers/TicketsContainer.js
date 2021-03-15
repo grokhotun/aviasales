@@ -6,6 +6,7 @@ import Loader from '@/components/Loader/Loader'
 import Tickets from '@/components/Tickets/Tickets'
 import ErrorIndicator from '@/components/ErrorIndicator/ErrorIndicator'
 import {requestTickets} from '@/redux/actions'
+import {filterByTransitions, sortingBy} from '@/utils'
 
 const TicketsContainer = ({isError, isFetching, tickets, fetchData}) => {
   const [shownTickets, setShownTickets] = useState(5)
@@ -15,7 +16,6 @@ const TicketsContainer = ({isError, isFetching, tickets, fetchData}) => {
     const shownNumber = shownTickets
     setShownTickets(shownNumber + 5)
   }
-
 
   if (isError && !tickets.length) {
     return <ErrorIndicator callback={fetchData}/>
@@ -36,8 +36,8 @@ const TicketsContainer = ({isError, isFetching, tickets, fetchData}) => {
     />)
 }
 
-const mapStateToProps = ({isFetching, isError, tickets}) => ({
-  tickets,
+const mapStateToProps = ({isFetching, isError, tickets, transitions, sortBy}) => ({
+  tickets: sortingBy(filterByTransitions(tickets, transitions), sortBy),
   isFetching,
   isError
 })

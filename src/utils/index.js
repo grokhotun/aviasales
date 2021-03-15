@@ -6,7 +6,7 @@ import {orderBy} from 'lodash'
  * @param {string} type Строка типа сортировки
  * @return {array} Отсортированный массив билетов
  */
-export const sortBy =(items, type) => {
+export const sortingBy =(items, type) => {
   if (type === 'fast') {
     return orderBy(items, 'totalDuration', 'asc')
   } else if (type === 'cheap') {
