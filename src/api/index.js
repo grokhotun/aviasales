@@ -1,3 +1,4 @@
+import {calcDuration, calcTime} from '@/utils'
 class AviasalesAPI {
   constructor() {
     this._api = 'https://front-test.beta.aviasales.ru'
@@ -72,38 +73,6 @@ class AviasalesAPI {
       return error
     }
   }
-}
-/**
- * Метод форматирует время в timesstamp секундах в формат часы/минуты
- * @param {number} time Время в формате UNIX timestamp
- * @return {string} Возвращает строку
- */
-const calcDuration = time => {
-  const timestamp = time * 60
-  const hours = Math.floor(timestamp / 60 / 60)
-  const minutes = Math.floor(timestamp / 60) - hours * 60
-  return `${hours} ч. ${minutes} м.`
-}
-
-/**
- * Метод высчитывает интервал полета на основании времени вылета и длительности
- * @param {number} departureTime Время вылета в формате UNIX timestamp
- * @param {*} duration Длительность полета в формате UNIX timestamp
- * @return {string} Возвращает строку
- */
-const calcTime = (departureTime, duration) => {
-  const originTime = new Date(departureTime)
-  const destinationTime = new Date()
-  const departureTimeInMs = originTime.getTime()
-  const arrivialTimeInMs = departureTimeInMs + duration * 60000
-  destinationTime.setTime(arrivialTimeInMs)
-  const fromTime = `${originTime.getHours() < 10 ? '0' : ''}${originTime.getHours()}:${
-    originTime.getMinutes() < 10 ? '0' : ''
-  }${originTime.getMinutes()}`
-  const toTime = `${destinationTime.getHours() < 10 ? '0' : ''}${destinationTime.getHours()}:${
-    destinationTime.getMinutes() < 10 ? '0' : ''
-  }${destinationTime.getMinutes()}`
-  return `${fromTime} - ${toTime}`
 }
 
 export const $api = new AviasalesAPI()

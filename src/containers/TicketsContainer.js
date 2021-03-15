@@ -9,12 +9,13 @@ import {requestTickets} from '@/redux/actions'
 
 const TicketsContainer = ({isError, isFetching, tickets, fetchData}) => {
   const [shownTickets, setShownTickets] = useState(5)
+  useEffect(() => fetchData(), [])
+
   const showMoreTickets = () => {
     const shownNumber = shownTickets
     setShownTickets(shownNumber + 5)
   }
 
-  useEffect(() => fetchData(), [])
 
   if (isError && !tickets.length) {
     return <ErrorIndicator callback={fetchData}/>
@@ -40,6 +41,7 @@ const mapStateToProps = ({isFetching, isError, tickets}) => ({
   isFetching,
   isError
 })
+
 const mapDispatchToProps = (dispatch) => ({
   fetchData: requestTickets(dispatch)
 })
