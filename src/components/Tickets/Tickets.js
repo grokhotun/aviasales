@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import TicketCard from '@components/TicketCard/TicketCard'
 import Loader from '@components/Loader/Loader'
 import ErrorIndicator from '@components/ErrorIndicator/ErrorIndicator'
+import Empty from '@components/Empty/Empty'
 
 import './Tickets.scss'
 
@@ -19,6 +20,8 @@ const Tickets = ({isError, isFetching, fetchData, tickets, shownTickets, showMor
           ? <ErrorIndicator/>
           : isFetching
           ? <Loader/>
+          : tickets.length === 0
+          ? <Empty message='Ничего не найдено :('/>
           : shownTickets > tickets.length
           ? <button onClick={fetchData}>Загрузить еще...</button>
           : <button onClick={showMoreTickets}>Показать еще...</button>
