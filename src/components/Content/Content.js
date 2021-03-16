@@ -1,7 +1,7 @@
 import React from 'react'
 import FilterContainer from '@containers/FilterContainer'
 import TicketsContainer from '@containers/TicketsContainer'
-import Tabs from '@components/Tabs/Tabs'
+import TabsContainer from '@containers/TabsContainer'
 import './Content.scss'
 
 const Content = () => {
@@ -11,7 +11,7 @@ const Content = () => {
         <FilterContainer/>
       </div>
       <div className="content__col content__col--tickets">
-        <Tabs/>
+        <TabsContainer/>
         <TicketsContainer/>
       </div>
     </main>

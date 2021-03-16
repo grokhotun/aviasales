@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import TicketCard from '@/components/TicketCard/TicketCard'
+
+import TicketCard from '@components/TicketCard/TicketCard'
+import Loader from '@components/Loader/Loader'
+import ErrorIndicator from '@components/ErrorIndicator/ErrorIndicator'
+
 import './Tickets.scss'
-import Loader from '@/components/Loader/Loader'
-import ErrorIndicator from '@/components/ErrorIndicator/ErrorIndicator'
 
 const Tickets = ({isError, isFetching, fetchData, tickets, shownTickets, showMoreTickets}) => {
   return (

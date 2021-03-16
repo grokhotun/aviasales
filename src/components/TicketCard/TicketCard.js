@@ -64,7 +64,7 @@ const TicketCard = ({ticket}) => {
             <div className="row-ticket-card__value">
               {
                 from.stops.length === 0 ? ' '
-                : from.stops.map((e, index) => index >= 1 ? ', ' + e : e)
+                : from.stops.map((e, index) => index >= 1 ? `, ${e}` : e)
               }
             </div>
           </div>
