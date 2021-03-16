@@ -11,6 +11,8 @@
 
 .error-indicator{display:flex;align-items:center;justify-content:center;flex-direction:column}.error-indicator p{margin:10px 0px}.error-indicator button{border:none;padding:10px;background-color:#2196f3;border-radius:5px;color:#ffffff;font-weight:bold;font-size:12px;line-height:20px;letter-spacing:0.5px;text-transform:uppercase}
 
+.empty{display:flex;align-items:center;justify-content:center}
+
 .tickets__body>*:not(:last-child){margin-bottom:15px}.tickets__btn{margin-top:30px}.tickets__btn button{border:none;width:100%;padding:20px;background-color:#2196F3;border-radius:10px;color:#ffffff;font-weight:bold;font-size:12px;line-height:20px;letter-spacing:0.5px;text-transform:uppercase}
 
 .tabs{display:flex;align-items:center;justify-content:center;margin-bottom:15px;border-radius:7px;overflow:hidden}@media (max-width: 768px){.tabs{flex-direction:column}}.tabs__btn{width:100%;background:#fff;border:1px solid #dfe5ec;padding:15px 60px;font-weight:700;font-size:12px;line-height:20px;letter-spacing:0.5px;text-transform:uppercase;color:#4a4a4a;transition:0.3s ease}.tabs__btn--left{border-radius:7px 0px 0px 7px}@media (max-width: 768px){.tabs__btn--left{border-radius:7px 7px 0px 0px}}.tabs__btn--right{border-radius:0px 7px 7px 0px}@media (max-width: 768px){.tabs__btn--right{border-radius:0px 0px 7px 7px}}.tabs__btn.is-active{background:#2196f3;border:1px solid #2196f3;color:#fff}
